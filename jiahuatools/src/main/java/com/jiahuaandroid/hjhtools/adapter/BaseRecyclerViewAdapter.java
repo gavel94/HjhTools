@@ -17,18 +17,9 @@ import java.util.List;
  */
 public abstract class BaseRecyclerViewAdapter <T, VH extends BaseRecyclerViewAdapter.SparseArrayViewHolder> extends RecyclerView.Adapter<VH> {
     /**
-     * click listener
-     */
-    protected OnItemClickListener mOnItemClickListener;
-    /**
-     * long click listener
-     */
-    protected OnItemLongClickListener mOnItemLongClickListener;
-    /**
      * data
      */
     protected List<T> mList;
-
 
     /**
      * @param list the datas to attach the adapter
@@ -58,23 +49,6 @@ public abstract class BaseRecyclerViewAdapter <T, VH extends BaseRecyclerViewAda
         return super.getItemViewType(position);
     }
 
-    /**
-     * set a long click listener
-     *
-     * @param onItemLongClickListener
-     */
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
-        mOnItemLongClickListener = onItemLongClickListener;
-    }
-
-    /**
-     * set a click listener
-     *
-     * @param onItemClickListener
-     */
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        mOnItemClickListener = onItemClickListener;
-    }
 
     /**
      * inflate a view by viewgroup ,id ,etc
@@ -111,7 +85,6 @@ public abstract class BaseRecyclerViewAdapter <T, VH extends BaseRecyclerViewAda
     public final void onBindViewHolder(VH vh, int position) {
         final T item = getItem(position);
         bindDataToItemView(vh, item);
-        bindItemViewClickListener(vh, item);
     }
 
 
@@ -124,36 +97,6 @@ public abstract class BaseRecyclerViewAdapter <T, VH extends BaseRecyclerViewAda
      * @param item item
      */
     protected abstract void bindDataToItemView(VH vh, T item);
-
-
-    /**
-     * bind click listner to itemview
-     *
-     * 给itemview绑定点击时间
-     *
-     * @param vh   viewholder
-     * @param item item
-     */
-    protected final void bindItemViewClickListener(VH vh, final T item) {
-        if (mOnItemClickListener != null) {
-            vh.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mOnItemClickListener.onClick(view, item);
-                }
-            });
-        }
-        if (mOnItemLongClickListener != null) {
-            vh.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mOnItemLongClickListener.onLongClick(v, item);
-                    return true;
-                }
-            });
-        }
-    }
-
 
     /**
      * BaseViewHolder
