@@ -7,18 +7,6 @@ import android.content.SharedPreferences;
  * Created by jhhuang on 2016/3/14.
  */
 public class SPUtils {
-    public static final String DEVICE = "decice";
-    public static final String TOKEN = "token";
-    public static final String AVATARFILEID = "avatarFileId";
-    public static final String QRCODEURL = "qrCodeUrl";
-    public static final String USERNAME = "userName";
-    public static final String MOBILE = "mobile";
-    public static final String USERID = "userId";
-    public static final String NICKNAME = "nickName";
-
-    public static final String MAIL = "mail";
-    public static final String CAR_SIZE = "car_size";
-    public static final String COMPANYNAME = "companyName";
 
     private static SharedPreferences sp;
     private static SPUtils instance;
